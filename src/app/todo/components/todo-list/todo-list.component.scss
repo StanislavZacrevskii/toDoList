@@ -1,0 +1,20 @@
+.todo__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.todo__item {
+    
+    margin-bottom: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff
+}
+
+.todo-item-task {
+    display: flex;
+    justify-content: space-between;
+}

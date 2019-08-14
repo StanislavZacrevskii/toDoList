@@ -3,44 +3,10 @@
         <h1 class="todo__title">
                 To Do List
         </h1>
-        <div *ngIf="!toDoListArray.length" class="todo__empty">
-            Please add a new task
-        </div>
-        <ul class="todo__list">
-            <li *ngFor="let task of toDoListArray" class="todo__item">
-                <div class="task__info">
-                    <div class="task__info_description"
-                         [ngClass]="{'task__comleted': task.completeFlag}">
-                        {{task.description}}
-                    </div>
-                    <div class="task__info_create-on">
-                        {{task.createOn | date: 'short'}}
-                    </div>
-                </div>
-                <div class="task__button">
-                    <button *ngIf="!task.completeFlag"
-                            class="button task__button_complete"
-                            (click)="taskComplete(task);">Complete</button>
-                    <button class="button task__button_delete"
-                            (click)="taskDelete(task);">Delete</button>
-                </div>
-            </li>
-        </ul>
+        <app-todo-list></app-todo-list>
     </div>
     <div class="todo__creator">
-        <form class="todo__creator-form" [formGroup]="taskForm" (ngSubmit)="setToDoItem(creatorNewTask);">
-            <input type="text"
-                    #creatorNewTask
-                    class="creator__description"
-                    formControlName="description"
-                    pInputText
-                    placeholder="Add your task">
-            <button class="button creator__description-button"
-                    [disabled]="!creatorNewTask.value.length"
-                    type="submit">
-                Create
-            </button>
-        </form>
+        <app-todo-creator></app-todo-creator>
     </div>
         
 </div>

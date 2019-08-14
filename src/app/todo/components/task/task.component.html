@@ -1,0 +1,16 @@
+<div class="task__info">
+    <div class="task__info_description"
+         [ngClass]="{'task__comleted': task.completeFlag}">
+        {{task.description}}
+    </div>
+    <div class="task__info_create-on">
+        {{task.createOn | date: 'short'}}
+    </div>
+</div>
+<div class="task__button">
+    <button *ngIf="!task.completeFlag"
+            class="button task__button_complete"
+            (click)="taskComplete(task);">Complete</button>
+    <button class="button task__button_delete"
+            (click)="taskDelete(task);">Delete</button>
+</div>

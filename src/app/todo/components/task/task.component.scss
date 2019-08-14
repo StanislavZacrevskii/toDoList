@@ -1,0 +1,36 @@
+.task__info {
+    display: flex;
+    flex-direction: column;
+
+    .task__info_description {
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 5px 5px 0;
+    }
+}
+
+.task__button {
+    display: flex;
+    align-items: center;
+
+    button {
+        margin-right: 5px;
+        color: #fff;
+
+        &:last-child {
+            margin-right: 0;
+        } 
+    }
+
+    .task__button_complete {
+        background-color: green;
+    }
+
+    .task__button_delete {
+        background-color: red;
+    }
+}
+
+.task__comleted {
+    text-decoration: line-through;
+}
