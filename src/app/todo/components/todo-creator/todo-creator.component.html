@@ -1,0 +1,15 @@
+<form class="todo__creator-form"
+      [formGroup]="taskForm"
+      (ngSubmit)="setToDoItem(creatorNewTask);">
+    <input type="text"
+            #creatorNewTask
+            class="creator__description"
+            formControlName="description"
+            pInputText
+            placeholder="Add your task">
+    <button class="button creator__description-button"
+            [disabled]="!creatorNewTask.value.length"
+            type="submit">
+        Create
+    </button>
+</form>

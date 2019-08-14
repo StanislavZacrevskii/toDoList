@@ -8,12 +8,17 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoComponent } from './todo/todo.component';
-import { WindowRefService } from './shared/services/window-ref.service';
+import { TodoListComponent } from './todo/components/todo-list/todo-list.component';
+import { TodoCreatorComponent } from './todo/components/todo-creator/todo-creator.component';
+import { TaskComponent } from './todo/components/task/task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    TodoListComponent,
+    TodoCreatorComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +26,7 @@ import { WindowRefService } from './shared/services/window-ref.service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [WindowRefService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
