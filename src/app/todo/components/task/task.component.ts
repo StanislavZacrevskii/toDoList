@@ -18,8 +18,7 @@ export class TaskComponent implements OnInit {
     }
 
     taskComplete(task: Task) {
-        task.completeFlag = true;
-        this.changeTask.emit();
+        this.changeTask.emit(task);
     }
 
     taskDelete(task: Task) {

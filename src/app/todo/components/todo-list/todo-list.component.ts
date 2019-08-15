@@ -24,22 +24,14 @@ export class TodoListComponent implements OnInit {
     }
 
     public getToDoList() {
-        this.toDoService.getToDoList().subscribe(
-            (todo) => {
-                this.toDoListArray = todo;
-            },
-            (err) => {
-                console.log(err);
-            }
-        );
+        this.toDoService.getToDoList();
     }
 
-    changeTask() {
-        this.toDoService.setToDoItem(JSON.stringify(this.toDoListArray)).subscribe();
+    changeTask(task: Task) {
+        this.toDoService.changeTask(task);
     }
 
     deleteTask(task: Task) {
-        this.toDoListArray.splice(this.toDoListArray.indexOf(task), 1);
-        this.toDoService.setToDoItem(JSON.stringify(this.toDoListArray));
+        this.toDoService.deleteTask(task);
     }
 }
