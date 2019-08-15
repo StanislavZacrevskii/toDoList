@@ -1,6 +1,6 @@
 <form class="todo__creator-form"
       [formGroup]="taskForm"
-      (ngSubmit)="setToDoItem(creatorNewTask);">
+      (ngSubmit)="addNewItem(creatorNewTask);">
     <input type="text"
             #creatorNewTask
             class="creator__description"

@@ -36,16 +36,10 @@ export class TodoCreatorComponent implements OnInit {
         })
     }
 
-    setToDoItem(newTask: any) {
+    addNewItem(newTask: any) {
         if (this.taskForm.get('description').valid && newTask.value.length) {
-            this.toDoListArray.push({
-                description: newTask.value,
-                createOn: new Date,
-                completeFlag: false
-            });
-            this.toDoService.setToDoItem(JSON.stringify(this.toDoListArray)).subscribe(
+            this.toDoService.addNewItem(newTask.value).subscribe(
                 () => {
-                    this.toDoService.getToDoList();
                     this.taskForm.reset();
                 },
                 (err) => {
