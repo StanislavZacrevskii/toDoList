@@ -8,7 +8,7 @@
             pInputText
             placeholder="Add your task">
     <button class="button creator__description-button"
-            [disabled]="!creatorNewTask.value.length"
+            [disabled]="!taskForm.get('description').valid"
             type="submit">
         Create
     </button>

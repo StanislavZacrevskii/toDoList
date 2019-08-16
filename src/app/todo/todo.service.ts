@@ -3,7 +3,7 @@ import {
     WindowRefService,
     ICustomWindow
 } from '../shared/services/window-ref.service';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Task } from './todo.interface';
 
 @Injectable({
@@ -22,28 +22,48 @@ export class TodoService {
 
     getToDoList(): void {
         this.toDoList.next(JSON.parse(this._window.localStorage.getItem("myToDoList")));
-        JSON.parse(this._window.localStorage.getItem("myToDoList"));
     }
 
-    addNewItem(newTaskDescription: string): Observable<any> {
-        this.toDoList.value.push({
-            description: newTaskDescription,
-            createOn: new Date,
-            completeFlag: false
-        });
-
-        return of(this._window.localStorage.setItem("myToDoList", JSON.stringify(this.toDoList.value)));
+    addNewItem(newTaskDescription: string): void {
+        const newToDo = this.toDoList.value.slice();
+        newToDo.push(
+            {
+                description: newTaskDescription,
+                createOn: new Date,
+                completeFlag: false
+            });
+        this.toDoList.next(newToDo);
+        this.toDoList.subscribe(
+            (data) => {
+                this.saveData(data);
+            });
     }
 
     changeTask(task: Task): void {
-        this.toDoList.value[this.toDoList.value.indexOf(task)].completeFlag = true;
-
-        this._window.localStorage.setItem("myToDoList", JSON.stringify(this.toDoList.value));
+        const newToDo = this.toDoList.value.slice();
+        newToDo.map((e) => {
+            if(e.createOn === task.createOn) {
+                e.completeFlag = true;
+            }
+        });
+        this.toDoList.next(newToDo);
+        this.toDoList.subscribe(
+            (data) => {
+                this.saveData(data);
+            });
     }
 
     deleteTask(task: Task): void {
-        this.toDoList.value.splice(this.toDoList.value.indexOf(task), 1);
+        const newToDo = this.toDoList.value.slice();
+        newToDo.splice(this.toDoList.value.indexOf(task), 1);
+        this.toDoList.next(newToDo);
+        this.toDoList.subscribe(
+            (data) => {
+                this.saveData(data);
+            });
+    }
 
-        this._window.localStorage.setItem("myToDoList", JSON.stringify(this.toDoList.value));
+    saveData(data: Task[]) {
+        this._window.localStorage.setItem("myToDoList", JSON.stringify(data));
     }
 }
