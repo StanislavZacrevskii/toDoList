@@ -30,23 +30,19 @@ export class TodoCreatorComponent implements OnInit {
     public toDoListArray: Task[] = [];
     public taskForm: FormGroup;
 
+    public regExpNotEmpty = new RegExp("^(?=\\s*\\S).*$");
+
     ngOnInit() {
         this.taskForm = this.formBuilder.group({
-            'description': ['', [Validators.required]]
+            'description': ['', [Validators.required, Validators.pattern(this.regExpNotEmpty)]]
         })
     }
 
     addNewItem(newTask: any) {
-        if (this.taskForm.get('description').valid && newTask.value.length) {
-            this.toDoService.addNewItem(newTask.value).subscribe(
-                () => {
-                    this.taskForm.reset();
-                },
-                (err) => {
-                    console.log(err);
-                }
-            );
-            
+        if (this.taskForm.get('description').valid) {
+            newTask.value.trim();
+            this.toDoService.addNewItem(newTask.value);
+            this.taskForm.reset();
         }
         
     }
