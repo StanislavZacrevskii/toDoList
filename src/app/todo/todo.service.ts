@@ -5,6 +5,7 @@ import {
 } from '../shared/services/window-ref.service';
 import { BehaviorSubject } from 'rxjs';
 import { Task } from './todo.interface';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +14,9 @@ export class TodoService {
 
     private _window: ICustomWindow;
 
-    private toDoList = new BehaviorSubject([]);
-    toDoListArray = this.toDoList.asObservable();
+    private toDoList = new BehaviorSubject<Task[]>([]);
+    public toDoListArray = this.toDoList.asObservable()
+        .pipe(tap( data => this.saveData(data)));
 
     constructor(windowRef: WindowRefService) {
         this._window = windowRef.nativeWindow;
@@ -33,10 +35,6 @@ export class TodoService {
                 completeFlag: false
             });
         this.toDoList.next(newToDo);
-        this.toDoList.subscribe(
-            (data) => {
-                this.saveData(data);
-            });
     }
 
     changeTask(task: Task): void {
@@ -47,20 +45,12 @@ export class TodoService {
             }
         });
         this.toDoList.next(newToDo);
-        this.toDoList.subscribe(
-            (data) => {
-                this.saveData(data);
-            });
     }
 
     deleteTask(task: Task): void {
         const newToDo = this.toDoList.value.slice();
         newToDo.splice(this.toDoList.value.indexOf(task), 1);
         this.toDoList.next(newToDo);
-        this.toDoList.subscribe(
-            (data) => {
-                this.saveData(data);
-            });
     }
 
     saveData(data: Task[]) {
