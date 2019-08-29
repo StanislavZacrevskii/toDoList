@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../todo.service';
-import { Task } from 'src/app/todo/todo.interface'
+import { Task } from 'src/app/todo/todo.interface';
 
 @Component({
     selector: 'app-todo-list',
@@ -9,18 +9,17 @@ import { Task } from 'src/app/todo/todo.interface'
 })
 export class TodoListComponent implements OnInit {
 
-    constructor(private toDoService: TodoService) {
-        this.toDoService.toDoListArray.subscribe(
-            (toDo) => {
-                this.toDoListArray = toDo;
-            }
-        )
-    }
+    constructor(private toDoService: TodoService) {}
 
     public toDoListArray: Task[] = [];
 
     ngOnInit() {
         this.getToDoList();
+        this.toDoService.toDoListArray.subscribe(
+            (toDo) => {
+                this.toDoListArray = toDo;
+            }
+        );
     }
 
     public getToDoList() {

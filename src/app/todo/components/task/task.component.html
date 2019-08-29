@@ -1,4 +1,4 @@
-<div class="task__info">
+<div *ngIf="!confirm" class="task__info">
     <div class="task__info_description"
          [ngClass]="{'task__comleted': task.completeFlag}">
         {{task.description}}
@@ -7,10 +7,12 @@
         {{task.createOn | date: 'short'}}
     </div>
 </div>
-<div class="task__button">
+<div *ngIf="!confirm" class="task__button">
     <button *ngIf="!task.completeFlag"
             class="button task__button_complete"
             (click)="taskComplete(task);">Complete</button>
     <button class="button task__button_delete"
-            (click)="taskDelete(task);">Delete</button>
+            (click)="confirmTaskDelete(task);">Delete</button>
 </div>
+
+<app-confirm-dialog *ngIf="confirm" [confirm]="confirm" style="width: 100%;height: 100%;"></app-confirm-dialog>

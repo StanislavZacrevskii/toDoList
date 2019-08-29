@@ -1,0 +1,45 @@
+.confirm__wrapper {
+    position: relative;
+    z-index: 100;
+    
+    .confirm__message {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .confirm__button {
+        text-align: right;
+        padding: 5px 10px;
+        border-top: 1px solid black;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px; 
+        background-color: lightgray;
+    
+        button {
+            margin-right: 5px;
+            color: #fff;
+    
+            &:last-child {
+                margin-right: 0;
+            } 
+        }
+    
+        &_accept {
+            background-color: red;
+        }
+    
+        &_reject {
+            background-color: green;
+        }
+    }
+}
+
+.confirm_background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}

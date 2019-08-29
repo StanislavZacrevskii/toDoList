@@ -1,6 +1,10 @@
 <ul *ngIf="toDoListArray.length; else elsetoDoListEmpty" class="todo__list">
     <li *ngFor="let task of toDoListArray" class="todo__item">
-        <app-task [task]="task" class="todo-item-task" (changeTask)="changeTask(task);" (deleteTask)="deleteTask(task);"></app-task>
+        <app-task [task]="task"
+                  class="todo-item-task"
+                  (changeTask)="changeTask(task);"
+                  (deleteTask)="deleteTask(task);">
+        </app-task>
     </li>
 </ul>
 <ng-template #elsetoDoListEmpty class="todo__empty">

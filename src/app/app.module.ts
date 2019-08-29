@@ -11,6 +11,7 @@ import { TodoComponent } from './todo/todo.component';
 import { TodoListComponent } from './todo/components/todo-list/todo-list.component';
 import { TodoCreatorComponent } from './todo/components/todo-creator/todo-creator.component';
 import { TaskComponent } from './todo/components/task/task.component';
+import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TaskComponent } from './todo/components/task/task.component';
     TodoComponent,
     TodoListComponent,
     TodoCreatorComponent,
-    TaskComponent
+    TaskComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
