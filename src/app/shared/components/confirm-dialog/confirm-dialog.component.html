@@ -1,0 +1,14 @@
+<div class="confirm__wrapper">
+    <div class="confirm__message">
+        <div class="confirm__message_message">
+            {{confirm.message}}
+        </div>
+    </div>
+    <div class="confirm__button">
+        <button class="button confirm__button_accept"
+                (click)="confirm.accept()">Yes</button>
+        <button class="button confirm__button_reject"
+                (click)="confirm.reject()">No</button>
+    </div>
+</div>
+<div class="confirm_background" (click)="confirm.reject()"></div>

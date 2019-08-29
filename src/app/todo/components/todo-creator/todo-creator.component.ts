@@ -19,13 +19,7 @@ import { Task } from 'src/app/todo/todo.interface';
 export class TodoCreatorComponent implements OnInit {
 
     constructor(private toDoService: TodoService,
-                private formBuilder: FormBuilder) {
-        this.toDoService.toDoListArray.subscribe(
-            (toDo) => {
-                this.toDoListArray = toDo;
-            }
-        )
-    }
+                private formBuilder: FormBuilder) {}
 
     public toDoListArray: Task[] = [];
     public taskForm: FormGroup;
@@ -33,9 +27,14 @@ export class TodoCreatorComponent implements OnInit {
     public regExpNotEmpty = new RegExp("^(?=\\s*\\S).*$");
 
     ngOnInit() {
+        this.toDoService.toDoListArray.subscribe(
+            (toDo) => {
+                this.toDoListArray = toDo;
+            }
+        );
         this.taskForm = this.formBuilder.group({
             'description': ['', [Validators.required, Validators.pattern(this.regExpNotEmpty)]]
-        })
+        });
     }
 
     addNewItem(newTask: any) {
